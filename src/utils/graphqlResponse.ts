@@ -1,6 +1,6 @@
 import { GraphQLError } from 'graphql';
 
-const handleSuccess = (message: string, data?: object) => {
+const handleSuccess = (message: string, data?: object | null) => {
   return {
     success: true,
     message,

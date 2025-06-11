@@ -1,4 +1,12 @@
-import { Entity, PrimaryKey, Property, Unique } from '@mikro-orm/core';
+import {
+  Collection,
+  Entity,
+  ManyToMany,
+  PrimaryKey,
+  Property,
+  Unique,
+} from '@mikro-orm/core';
+import { Product } from 'src/product/product.entity';
 
 @Entity()
 export class Category {
@@ -14,4 +22,7 @@ export class Category {
 
   @Property({ onUpdate: () => new Date() })
   updatedAt?: Date = new Date();
+
+  @ManyToMany(() => Product, (product) => product.categories, { owner: true })
+  products = new Collection<Product>(this);
 }

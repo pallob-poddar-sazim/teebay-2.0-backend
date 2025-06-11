@@ -7,5 +7,6 @@ import { CategoryResolver } from './category.resolver';
 @Module({
   imports: [MikroOrmModule.forFeature([Category])],
   providers: [CategoryResolver, CategoryService],
+  exports: [MikroOrmModule],
 })
 export class CategoryModule {}

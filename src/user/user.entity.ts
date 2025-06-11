@@ -3,10 +3,10 @@ import {
   PrimaryKey,
   Property,
   Unique,
-  // OneToMany,
-  // Collection,
+  OneToMany,
+  Collection,
 } from '@mikro-orm/core';
-// import { Product } from './product.entity';
+import { Product } from '../product/product.entity';
 // import { Purchase } from './purchase.entity';
 // import { Rental } from './rental.entity';
 
@@ -37,8 +37,8 @@ export class User {
   @Property({ onUpdate: () => new Date() })
   updatedAt?: Date = new Date();
 
-  // @OneToMany(() => Product, (product) => product.seller)
-  // products = new Collection<Product>(this);
+  @OneToMany(() => Product, (product) => product.seller)
+  products = new Collection<Product>(this);
 
   // @OneToMany(() => Purchase, (purchase) => purchase.user)
   // purchases = new Collection<Purchase>(this);
