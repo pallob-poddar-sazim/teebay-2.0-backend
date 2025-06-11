@@ -6,7 +6,7 @@ import {
   Property,
   Unique,
 } from '@mikro-orm/core';
-import { Product } from 'src/product/product.entity';
+import { Product } from '../product/product.entity';
 
 @Entity()
 export class Category {

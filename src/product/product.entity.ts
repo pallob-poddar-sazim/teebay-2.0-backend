@@ -4,14 +4,14 @@ import {
   Property,
   ManyToOne,
   OneToOne,
-  // OneToMany,
+  OneToMany,
   ManyToMany,
   Collection,
   Enum,
 } from '@mikro-orm/core';
 import { User } from '../user/user.entity';
 import { Purchase } from '../purchase/purchase.entity';
-// import { Rental } from '../../rental/rental.entity';
+import { Rental } from '../rental/rental.entity';
 import { Category } from '../category/category.entity';
 
 export enum RentOption {
@@ -54,6 +54,6 @@ export class Product {
   @OneToOne(() => Purchase, (purchase) => purchase.product, { nullable: true })
   purchase?: Purchase;
 
-  // @OneToMany(() => Rental, (rental) => rental.product)
-  // rentals = new Collection<Rental>(this);
+  @OneToMany(() => Rental, (rental) => rental.product)
+  rentals = new Collection<Rental>(this);
 }

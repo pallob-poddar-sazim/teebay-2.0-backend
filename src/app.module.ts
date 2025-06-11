@@ -8,6 +8,7 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
 import { PurchaseModule } from './purchase/purchase.module';
+import { RentalModule } from './rental/rental.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { PurchaseModule } from './purchase/purchase.module';
     CategoryModule,
     ProductModule,
     PurchaseModule,
+    RentalModule,
   ],
 })
 export class AppModule {}

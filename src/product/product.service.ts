@@ -25,8 +25,10 @@ export class ProductService {
   async getAllProducts(): Promise<Product[]> {
     const products = await this.productRepository.find(
       {
-        // rentals: { $eq: [] },
-        // purchase: null,
+        purchase: null,
+        rentals: {
+          id: null,
+        },
       },
       {
         populate: ['seller', 'categories'],
@@ -47,8 +49,10 @@ export class ProductService {
     const products = await this.productRepository.find(
       {
         seller: sellerId,
-        // rentals: { $eq: [] },
-        // purchase: null,
+        rentals: {
+          id: null,
+        },
+        purchase: null,
       },
       {
         populate: ['seller', 'categories'],

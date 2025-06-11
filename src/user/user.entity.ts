@@ -8,7 +8,7 @@ import {
 } from '@mikro-orm/core';
 import { Product } from '../product/product.entity';
 import { Purchase } from '../purchase/purchase.entity';
-// import { Rental } from './rental.entity';
+import { Rental } from '../rental/rental.entity';
 
 @Entity()
 export class User {
@@ -43,6 +43,6 @@ export class User {
   @OneToMany(() => Purchase, (purchase) => purchase.buyer)
   purchases = new Collection<Purchase>(this);
 
-  // @OneToMany(() => Rental, (rental) => rental.user)
-  // rentals = new Collection<Rental>(this);
+  @OneToMany(() => Rental, (rental) => rental.borrower)
+  rentals = new Collection<Rental>(this);
 }

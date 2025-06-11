@@ -4,7 +4,7 @@ import { PurchaseService } from './purchase.service';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
 @Resolver()
-export class purchaseResolver {
+export class PurchaseResolver {
   constructor(private readonly purchaseService: PurchaseService) {}
 
   @Query()
