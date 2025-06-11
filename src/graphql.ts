@@ -28,6 +28,7 @@ export interface IQuery {
     getAllCategories(): CategoryResponse | Promise<CategoryResponse>;
     getAllProducts(): ProductRetrieveResponse | Promise<ProductRetrieveResponse>;
     getProductsBySellerId(sellerId: string): ProductRetrieveResponse | Promise<ProductRetrieveResponse>;
+    getPurchasesByUserId(userId: string): PurchaseRetrieveResponse | Promise<PurchaseRetrieveResponse>;
     _empty(): Nullable<string> | Promise<Nullable<string>>;
 }
 
@@ -36,6 +37,7 @@ export interface IMutation {
     createProduct(title: string, categoryIds: string[], description: string, price: number, rent: number, rentOption: RentOption, sellerId: string): ProductMutationResponse | Promise<ProductMutationResponse>;
     updateProduct(id: string, title?: Nullable<string>, categoryIds?: Nullable<string[]>, description?: Nullable<string>, price?: Nullable<number>, rent?: Nullable<number>, rentOption?: Nullable<RentOption>): ProductMutationResponse | Promise<ProductMutationResponse>;
     deleteProduct(id: string): ProductMutationResponse | Promise<ProductMutationResponse>;
+    createPurchase(productId: string, buyerId: string): PurchaseMutationResponse | Promise<PurchaseMutationResponse>;
     signUp(name: string, address: string, email: string, phone: string, password: string, confirmPassword: string): UserResponse | Promise<UserResponse>;
     signIn(email: string, password: string): UserResponse | Promise<UserResponse>;
 }
@@ -62,6 +64,25 @@ export interface ProductRetrieveResponse {
     success: boolean;
     message: string;
     data?: Nullable<Product[]>;
+}
+
+export interface Purchase {
+    id: string;
+    product: Product;
+    buyer: User;
+    createdAt: Date;
+}
+
+export interface PurchaseMutationResponse {
+    success: boolean;
+    message: string;
+    data?: Nullable<Purchase>;
+}
+
+export interface PurchaseRetrieveResponse {
+    success: boolean;
+    message: string;
+    data?: Nullable<Purchase[]>;
 }
 
 export interface User {

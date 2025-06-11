@@ -3,14 +3,14 @@ import {
   PrimaryKey,
   Property,
   ManyToOne,
-  // OneToOne,
+  OneToOne,
   // OneToMany,
   ManyToMany,
   Collection,
   Enum,
 } from '@mikro-orm/core';
 import { User } from '../user/user.entity';
-// import { Purchase } from '../../purchase/purchase.entity';
+import { Purchase } from '../purchase/purchase.entity';
 // import { Rental } from '../../rental/rental.entity';
 import { Category } from '../category/category.entity';
 
@@ -48,12 +48,12 @@ export class Product {
   @ManyToOne(() => User)
   seller!: User;
 
-  // @OneToOne(() => Purchase, (purchase) => purchase.product, { nullable: true })
-  // purchase?: Purchase;
+  @ManyToMany(() => Category, (category) => category.products)
+  categories = new Collection<Category>(this);
+
+  @OneToOne(() => Purchase, (purchase) => purchase.product, { nullable: true })
+  purchase?: Purchase;
 
   // @OneToMany(() => Rental, (rental) => rental.product)
   // rentals = new Collection<Rental>(this);
-
-  @ManyToMany(() => Category, (category) => category.products)
-  categories = new Collection<Category>(this);
 }

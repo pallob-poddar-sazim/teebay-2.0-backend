@@ -9,5 +9,6 @@ import { Category } from 'src/category/category.entity';
 @Module({
   imports: [MikroOrmModule.forFeature([Product, User, Category])],
   providers: [ProductResolver, ProductService],
+  exports: [MikroOrmModule],
 })
 export class ProductModule {}
