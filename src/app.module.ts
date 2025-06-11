@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { join } from 'path';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
     }),
     MikroOrmModule.forRoot(),
     UserModule,
+    CategoryModule,
   ],
 })
 export class AppModule {}
