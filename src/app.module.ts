@@ -4,7 +4,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UserModule } from './user/user.module';
 import { join } from 'path';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
-import { PrismaModule } from './prisma/prisma.module';
+import { MikroOrmModule } from '@mikro-orm/nestjs';
 
 @Module({
   imports: [
@@ -17,7 +17,7 @@ import { PrismaModule } from './prisma/prisma.module';
         path: join(process.cwd(), 'src/graphql.ts'),
       },
     }),
-    PrismaModule,
+    MikroOrmModule.forRoot(),
     UserModule,
   ],
 })

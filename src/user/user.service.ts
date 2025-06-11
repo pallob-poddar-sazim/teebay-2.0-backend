@@ -1,15 +1,20 @@
 import { GraphQLError } from 'graphql';
-import { UserRepository } from './user.repository';
-import { User } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 import {
   hashPassword,
   comparePasswords,
 } from 'src/utils/passwordSecurityHandler';
+import { InjectRepository } from '@mikro-orm/nestjs';
+import { User } from './user.entity';
+import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: EntityRepository<User>,
+    private readonly em: EntityManager,
+  ) {}
 
   async signUp(
     name: string,
@@ -18,26 +23,27 @@ export class UserService {
     phone: string,
     password: string,
   ): Promise<User> {
-    const existingUser = await this.userRepository.findByEmail(email);
+    const existingUser = await this.userRepository.findOne({ email });
     if (existingUser) {
       throw new GraphQLError('User already exists');
     }
 
     const hashedPassword = await hashPassword(password);
 
-    const user = await this.userRepository.create({
+    const user = this.userRepository.create({
       name,
       address,
       email,
       phone,
       password: hashedPassword,
     });
+    await this.em.persistAndFlush(user);
 
     return user;
   }
 
   async signIn(email: string, password: string): Promise<User> {
-    const user = await this.userRepository.findByEmail(email);
+    const user = await this.userRepository.findOne({ email });
     if (!user) {
       throw new GraphQLError('Incorrect email or password');
     }
