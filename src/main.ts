@@ -8,6 +8,6 @@ async function bootstrap() {
     origin: true,
     credentials: true,
   });
-  await app.listen(config.port ?? 3000);
+  await app.listen(config.port ?? 4000);
 }
 void bootstrap();

@@ -10,7 +10,7 @@ class Config {
 
   constructor() {
     dotenv.config();
-    this.port = Number(process.env.PORT) || 3000;
+    this.port = Number(process.env.PORT) || 4000;
     this.databaseUri = process.env.DATABASE_URI || '';
     this.nodeEnv = process.env.NODE_ENV || 'development';
     this.postgresDB = process.env.POSTGRES_DB || '';
