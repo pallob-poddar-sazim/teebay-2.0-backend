@@ -5,10 +5,13 @@ import {
   Unique,
   OneToMany,
   Collection,
+  ManyToMany,
 } from '@mikro-orm/core';
 import { Product } from '../product/product.entity';
 import { Purchase } from '../purchase/purchase.entity';
 import { Rental } from '../rental/rental.entity';
+import { Conversation } from '../conversation/conversation.entity';
+import { Message } from '../message/message.entity';
 
 @Entity()
 export class User {
@@ -45,4 +48,10 @@ export class User {
 
   @OneToMany(() => Rental, (rental) => rental.borrower)
   rentals = new Collection<Rental>(this);
+
+  @ManyToMany(() => Conversation, (conversation) => conversation.participants)
+  conversations = new Collection<Conversation>(this);
+
+  @OneToMany(() => Message, (message) => message.sender)
+  messages = new Collection<Message>(this);
 }

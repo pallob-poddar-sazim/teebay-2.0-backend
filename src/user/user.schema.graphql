@@ -12,10 +12,6 @@ type UserResponse {
   data: User
 }
 
-type Query {
-  _empty: String
-}
-
 type Mutation {
   signUp(
     name: String!

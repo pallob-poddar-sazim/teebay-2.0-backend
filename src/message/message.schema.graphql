@@ -1,0 +1,45 @@
+type Conversation {
+  id: ID!
+  participants: [User!]
+  lastMessage: Message!
+}
+
+type Message {
+  id: ID!
+  conversation: Conversation!
+  sender: User!
+  text: String!
+}
+
+type MessageQueryResponse {
+  success: Boolean!
+  message: String!
+  data: [Message]
+}
+
+type MessageMutationResponse {
+  success: Boolean!
+  message: String!
+  data: Message
+}
+
+type Query {
+  getMessages(participantIds: [ID!]!): MessageQueryResponse!
+}
+
+type Mutation {
+  sendMessage(
+    senderId: ID!
+    text: String!
+    conversationId: String
+    participantIds: [ID!]
+  ): MessageMutationResponse!
+}
+
+type Subscription {
+  messageSent(conversationId: String, participantIds: [ID!]): Message
+}
+
+type Subscription {
+  messageSentToUser(userId: ID!): Message
+}

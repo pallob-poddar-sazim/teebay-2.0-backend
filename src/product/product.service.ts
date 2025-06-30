@@ -100,7 +100,7 @@ export class ProductService {
 
     await this.em.persistAndFlush(product);
 
-    const createdProduct = this.productRepository.findOne(product.id, {
+    const createdProduct = await this.productRepository.findOne(product.id, {
       populate: ['seller', 'categories'],
     });
 

@@ -26,15 +26,17 @@ export interface CategoryResponse {
 
 export interface IQuery {
     getAllCategories(): CategoryResponse | Promise<CategoryResponse>;
+    getConversationsByUserId(userId: string): ConversationQueryResponse | Promise<ConversationQueryResponse>;
+    getMessages(participantIds: string[]): MessageQueryResponse | Promise<MessageQueryResponse>;
     getAllProducts(): ProductRetrieveResponse | Promise<ProductRetrieveResponse>;
     getProductsBySellerId(sellerId: string): ProductRetrieveResponse | Promise<ProductRetrieveResponse>;
     getPurchasesByUserId(userId: string): PurchaseRetrieveResponse | Promise<PurchaseRetrieveResponse>;
     getRentalsByUserId(userId: string): RentalRetrieveResponse | Promise<RentalRetrieveResponse>;
-    _empty(): Nullable<string> | Promise<Nullable<string>>;
 }
 
 export interface IMutation {
     createCategories(names: string[]): CategoryResponse | Promise<CategoryResponse>;
+    sendMessage(senderId: string, text: string, conversationId?: Nullable<string>, participantIds?: Nullable<string[]>): MessageMutationResponse | Promise<MessageMutationResponse>;
     createProduct(title: string, categoryIds: string[], description: string, price: number, rent: number, rentOption: RentOption, sellerId: string): ProductMutationResponse | Promise<ProductMutationResponse>;
     updateProduct(id: string, title?: Nullable<string>, categoryIds?: Nullable<string[]>, description?: Nullable<string>, price?: Nullable<number>, rent?: Nullable<number>, rentOption?: Nullable<RentOption>): ProductMutationResponse | Promise<ProductMutationResponse>;
     deleteProduct(id: string): ProductMutationResponse | Promise<ProductMutationResponse>;
@@ -42,6 +44,42 @@ export interface IMutation {
     createRental(productId: string, borrowerId: string, rentStartDate: Date, rentEndDate: Date): RentalMutationResponse | Promise<RentalMutationResponse>;
     signUp(name: string, address: string, email: string, phone: string, password: string, confirmPassword: string): UserResponse | Promise<UserResponse>;
     signIn(email: string, password: string): UserResponse | Promise<UserResponse>;
+}
+
+export interface ConversationQueryResponse {
+    success: boolean;
+    message: string;
+    data?: Nullable<Conversation[]>;
+}
+
+export interface Conversation {
+    id: string;
+    participants?: Nullable<User[]>;
+    lastMessage: Message;
+}
+
+export interface Message {
+    id: string;
+    conversation: Conversation;
+    sender: User;
+    text: string;
+}
+
+export interface MessageQueryResponse {
+    success: boolean;
+    message: string;
+    data?: Nullable<Nullable<Message>[]>;
+}
+
+export interface MessageMutationResponse {
+    success: boolean;
+    message: string;
+    data?: Nullable<Message>;
+}
+
+export interface ISubscription {
+    messageSent(conversationId?: Nullable<string>, participantIds?: Nullable<string[]>): Nullable<Message> | Promise<Nullable<Message>>;
+    messageSentToUser(userId: string): Nullable<Message> | Promise<Nullable<Message>>;
 }
 
 export interface Product {
