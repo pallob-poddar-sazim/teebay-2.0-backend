@@ -1,0 +1,27 @@
+type Conversation {
+  id: ID!
+  conversationKey: String!
+  participants: [User!]
+}
+
+type Message {
+  id: ID!
+  conversation: Conversation!
+  sender: User!
+  text: String!
+}
+
+type MessageMutationResponse {
+  success: Boolean!
+  message: String!
+  data: Message
+}
+
+type Mutation {
+  sendMessage(
+    senderId: ID!
+    text: String!
+    conversationId: String
+    participantIds: [ID!]
+  ): MessageMutationResponse!
+}

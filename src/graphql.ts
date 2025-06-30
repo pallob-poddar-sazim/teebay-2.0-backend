@@ -35,6 +35,7 @@ export interface IQuery {
 
 export interface IMutation {
     createCategories(names: string[]): CategoryResponse | Promise<CategoryResponse>;
+    sendMessage(senderId: string, text: string, conversationId?: Nullable<string>, participantIds?: Nullable<string[]>): MessageMutationResponse | Promise<MessageMutationResponse>;
     createProduct(title: string, categoryIds: string[], description: string, price: number, rent: number, rentOption: RentOption, sellerId: string): ProductMutationResponse | Promise<ProductMutationResponse>;
     updateProduct(id: string, title?: Nullable<string>, categoryIds?: Nullable<string[]>, description?: Nullable<string>, price?: Nullable<number>, rent?: Nullable<number>, rentOption?: Nullable<RentOption>): ProductMutationResponse | Promise<ProductMutationResponse>;
     deleteProduct(id: string): ProductMutationResponse | Promise<ProductMutationResponse>;
@@ -42,6 +43,25 @@ export interface IMutation {
     createRental(productId: string, borrowerId: string, rentStartDate: Date, rentEndDate: Date): RentalMutationResponse | Promise<RentalMutationResponse>;
     signUp(name: string, address: string, email: string, phone: string, password: string, confirmPassword: string): UserResponse | Promise<UserResponse>;
     signIn(email: string, password: string): UserResponse | Promise<UserResponse>;
+}
+
+export interface Conversation {
+    id: string;
+    conversationKey: string;
+    participants?: Nullable<User[]>;
+}
+
+export interface Message {
+    id: string;
+    conversation: Conversation;
+    sender: User;
+    text: string;
+}
+
+export interface MessageMutationResponse {
+    success: boolean;
+    message: string;
+    data?: Nullable<Message>;
 }
 
 export interface Product {
