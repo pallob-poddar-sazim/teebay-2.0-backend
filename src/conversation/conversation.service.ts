@@ -15,6 +15,8 @@ export class ConversationService {
 
     @InjectRepository(User)
     private readonly userRepository: EntityRepository<User>,
+
+    private readonly em: EntityManager,
   ) {}
 
   async create(participantIds: UUID[]): Promise<Conversation> {
@@ -32,13 +34,8 @@ export class ConversationService {
 
     let conversation = await this.conversationRepository.findOne({
       id: conversationId,
+      participants,
     });
-
-    if (!conversation) {
-      conversation = this.conversationRepository.create({
-        id: conversationId,
-        participants,
-      });
 
     if (!conversation) {
       conversation = this.conversationRepository.create({

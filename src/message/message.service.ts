@@ -1,4 +1,4 @@
-import { EntityRepository } from '@mikro-orm/postgresql';
+import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { Conversation } from 'src/conversation/conversation.entity';
 import { User } from 'src/user/user.entity';
 import { Message } from './message.entity';
