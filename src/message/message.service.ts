@@ -1,4 +1,4 @@
-import { EntityRepository } from '@mikro-orm/postgresql';
+import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { Conversation } from 'src/conversation/conversation.entity';
 import { User } from 'src/user/user.entity';
 import { Message } from './message.entity';
@@ -24,6 +24,8 @@ export class MessageService {
     private readonly messageRepository: EntityRepository<Message>,
 
     private readonly conversationService: ConversationService,
+
+    private readonly em: EntityManager,
 
     @Inject('PUB_SUB')
     private pubSub: PubSub,
