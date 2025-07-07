@@ -32,12 +32,17 @@ export class ConversationService {
 
     const conversationId = generateConversationId(participantIds);
 
-    const conversation = this.conversationRepository.create({
+    let conversation = await this.conversationRepository.findOne({
       id: conversationId,
-      participants,
     });
 
-    await this.em.persistAndFlush(conversation);
+    if (!conversation) {
+      conversation = this.conversationRepository.create({
+        id: conversationId,
+        participants,
+      });
+      await this.em.persistAndFlush(conversation);
+    }
 
     return conversation;
   }

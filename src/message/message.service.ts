@@ -7,6 +7,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { ConversationService } from 'src/conversation/conversation.service';
 import { GraphQLError } from 'graphql';
+import { PubSub } from 'graphql-subscriptions';
+import { Inject } from '@nestjs/common';
 
 @Injectable()
 export class MessageService {
@@ -23,6 +25,9 @@ export class MessageService {
     private readonly conversationService: ConversationService,
 
     private readonly em: EntityManager,
+
+    @Inject('PUB_SUB')
+    private pubSub: PubSub,
   ) {}
 
   async sendMessage(
@@ -38,10 +43,17 @@ export class MessageService {
       });
     }
 
-    let conversation = await this.conversationRepository.findOne({
-      id: conversationId,
-    });
-    if (!conversation) {
+    let conversation;
+    if (conversationId) {
+      conversation = await this.conversationRepository.findOne({
+        id: conversationId,
+      });
+      if (!conversation) {
+        throw new GraphQLError('Conversation not found', {
+          extensions: { code: 'NOT_FOUND' },
+        });
+      }
+    } else if (participantIds) {
       conversation = await this.conversationService.create(participantIds);
     }
 
@@ -52,7 +64,25 @@ export class MessageService {
     });
 
     await this.em.persistAndFlush(message);
+    await this.pubSub.publish('messageSent', { messageSent: message });
 
     return message;
+  }
+
+  async getMessages(conversationId: string): Promise<Message[]> {
+    const conversation = await this.conversationRepository.findOne({
+      id: conversationId,
+    });
+    if (!conversation) {
+      throw new GraphQLError('Conversation not found', {
+        extensions: { code: 'NOT_FOUND' },
+      });
+    }
+
+    const messages = await this.messageRepository.find({
+      conversation: conversation,
+    });
+
+    return messages;
   }
 }

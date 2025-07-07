@@ -26,11 +26,11 @@ export interface CategoryResponse {
 
 export interface IQuery {
     getAllCategories(): CategoryResponse | Promise<CategoryResponse>;
+    getMessages(conversationId: string): MessageQueryResponse | Promise<MessageQueryResponse>;
     getAllProducts(): ProductRetrieveResponse | Promise<ProductRetrieveResponse>;
     getProductsBySellerId(sellerId: string): ProductRetrieveResponse | Promise<ProductRetrieveResponse>;
     getPurchasesByUserId(userId: string): PurchaseRetrieveResponse | Promise<PurchaseRetrieveResponse>;
     getRentalsByUserId(userId: string): RentalRetrieveResponse | Promise<RentalRetrieveResponse>;
-    _empty(): Nullable<string> | Promise<Nullable<string>>;
 }
 
 export interface IMutation {
@@ -58,10 +58,20 @@ export interface Message {
     text: string;
 }
 
+export interface MessageQueryResponse {
+    success: boolean;
+    message: string;
+    data?: Nullable<Nullable<Message>[]>;
+}
+
 export interface MessageMutationResponse {
     success: boolean;
     message: string;
     data?: Nullable<Message>;
+}
+
+export interface ISubscription {
+    messageSent(conversationId: string): Message | Promise<Message>;
 }
 
 export interface Product {

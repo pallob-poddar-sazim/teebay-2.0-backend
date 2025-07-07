@@ -11,10 +11,20 @@ type Message {
   text: String!
 }
 
+type MessageQueryResponse {
+  success: Boolean!
+  message: String!
+  data: [Message]
+}
+
 type MessageMutationResponse {
   success: Boolean!
   message: String!
   data: Message
+}
+
+type Query {
+  getMessages(conversationId: String!): MessageQueryResponse!
 }
 
 type Mutation {
@@ -24,4 +34,8 @@ type Mutation {
     conversationId: String
     participantIds: [ID!]
   ): MessageMutationResponse!
+}
+
+type Subscription {
+  messageSent(conversationId: String!): Message!
 }
