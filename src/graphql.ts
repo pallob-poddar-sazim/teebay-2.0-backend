@@ -37,7 +37,6 @@ export interface IQuery {
 export interface IMutation {
     createCategories(names: string[]): CategoryResponse | Promise<CategoryResponse>;
     sendMessage(senderId: string, text: string, conversationId?: Nullable<string>, participantIds?: Nullable<string[]>): MessageMutationResponse | Promise<MessageMutationResponse>;
-    sendMessage(senderId: string, text: string, conversationId?: Nullable<string>, participantIds?: Nullable<string[]>): MessageMutationResponse | Promise<MessageMutationResponse>;
     createProduct(title: string, categoryIds: string[], description: string, price: number, rent: number, rentOption: RentOption, sellerId: string): ProductMutationResponse | Promise<ProductMutationResponse>;
     updateProduct(id: string, title?: Nullable<string>, categoryIds?: Nullable<string[]>, description?: Nullable<string>, price?: Nullable<number>, rent?: Nullable<number>, rentOption?: Nullable<RentOption>): ProductMutationResponse | Promise<ProductMutationResponse>;
     deleteProduct(id: string): ProductMutationResponse | Promise<ProductMutationResponse>;
