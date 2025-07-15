@@ -8,10 +8,15 @@ import {
 import { S3Service } from './s3.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { v4 as uuidv4 } from 'uuid';
+import { QueueService } from './queue.service';
+import config from 'src/config';
 
 @Controller()
 export class FileController {
-  constructor(private readonly s3Service: S3Service) {}
+  constructor(
+    private readonly s3Service: S3Service,
+    private readonly queueService: QueueService,
+  ) {}
 
   @Post('upload')
   @UseInterceptors(
@@ -46,6 +51,8 @@ export class FileController {
         key,
         file.mimetype,
       );
+
+      await this.queueService.enqueueCSVProcessing(config.awsS3BucketName, key);
 
       return {
         message: 'File uploaded successfully',

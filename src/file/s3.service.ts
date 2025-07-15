@@ -1,6 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import {
+  S3Client,
+  PutObjectCommand,
+  GetObjectCommand,
+} from '@aws-sdk/client-s3';
 import config from 'src/config';
+import { Readable } from 'stream';
 
 @Injectable()
 export class S3Service {
@@ -33,5 +38,15 @@ export class S3Service {
 
     await this.s3Client.send(command);
     return `http://localhost:4566/${this.bucketName}/${key}`;
+  }
+
+  async getObjectStream(key: string): Promise<Readable> {
+    const command = new GetObjectCommand({
+      Bucket: this.bucketName,
+      Key: key,
+    });
+    
+    const response = await this.s3Client.send(command);
+    return response.Body as Readable;
   }
 }

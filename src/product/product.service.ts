@@ -70,17 +70,23 @@ export class ProductService {
     rent: number,
     rentOption: RentOption,
     sellerId: UUID,
+    em?: EntityManager,
   ): Promise<Product | null> {
-    const seller = await this.userRepository.findOne({ id: sellerId });
+    const emToUse = em ?? this.em;
+
+    const userRepository = emToUse.getRepository(User);
+    const productRepository = emToUse.getRepository(Product);
+
+    const seller = await userRepository.findOne({ id: sellerId });
     if (!seller) {
       throw new GraphQLError('Seller not found', {
         extensions: { code: 'NOT_FOUND' },
       });
     }
 
-    const categories = await this.categoryRepository.find({
-      id: { $in: categoryIds },
-    });
+    const categories = categoryIds.map((id) =>
+      emToUse.getReference(Category, id),
+    );
 
     if (categories.length !== categoryIds.length) {
       throw new GraphQLError('One or more categories not found', {
@@ -88,7 +94,7 @@ export class ProductService {
       });
     }
 
-    const product = this.productRepository.create({
+    const product = productRepository.create({
       title,
       description,
       price,
@@ -98,9 +104,9 @@ export class ProductService {
       categories,
     });
 
-    await this.em.persistAndFlush(product);
+    await emToUse.persistAndFlush(product);
 
-    const createdProduct = await this.productRepository.findOne(product.id, {
+    const createdProduct = await productRepository.findOne(product.id, {
       populate: ['seller', 'categories'],
     });
 
