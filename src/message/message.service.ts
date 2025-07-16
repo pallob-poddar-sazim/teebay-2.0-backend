@@ -30,10 +30,10 @@ export class MessageService {
   ) {}
 
   async sendMessage(
-    conversationId: string,
-    participantIds: UUID[],
     senderId: UUID,
     text: string,
+    conversationId?: string,
+    participantIds?: UUID[],
   ): Promise<Message> {
     const sender = await this.userRepository.findOne({ id: senderId });
     if (!sender) {
