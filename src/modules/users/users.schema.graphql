@@ -1,0 +1,26 @@
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  phone: String!
+  address: String!
+}
+
+type UserResponse {
+  success: Boolean!
+  message: String!
+  data: User
+}
+
+type Mutation {
+  signUp(
+    name: String!
+    address: String!
+    email: String!
+    phone: String!
+    password: String!
+    confirmPassword: String!
+  ): UserResponse!
+
+  signIn(email: String!, password: String!): UserResponse!
+}
