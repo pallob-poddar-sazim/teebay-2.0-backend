@@ -16,16 +16,6 @@
           "length": 255,
           "mappedType": "string"
         },
-        "name": {
-          "name": "name",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 255,
-          "mappedType": "string"
-        },
         "created_at": {
           "name": "created_at",
           "type": "timestamptz",
@@ -45,9 +35,19 @@
           "nullable": false,
           "length": 6,
           "mappedType": "datetime"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
         }
       },
-      "name": "category",
+      "name": "categories",
       "schema": "public",
       "indexes": [
         {
@@ -55,13 +55,13 @@
             "name"
           ],
           "composite": false,
-          "keyName": "category_name_unique",
+          "keyName": "categories_name_unique",
           "constraint": true,
           "primary": false,
           "unique": true
         },
         {
-          "keyName": "category_pkey",
+          "keyName": "categories_pkey",
           "columnNames": [
             "id"
           ],
@@ -538,16 +538,6 @@
     },
     {
       "columns": {
-        "category_id": {
-          "name": "category_id",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 255,
-          "mappedType": "string"
-        },
         "product_id": {
           "name": "product_id",
           "type": "varchar(255)",
@@ -557,16 +547,26 @@
           "nullable": false,
           "length": 255,
           "mappedType": "string"
+        },
+        "category_id": {
+          "name": "category_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
         }
       },
-      "name": "category_products",
+      "name": "product_categories",
       "schema": "public",
       "indexes": [
         {
-          "keyName": "category_products_pkey",
+          "keyName": "product_categories_pkey",
           "columnNames": [
-            "category_id",
-            "product_id"
+            "product_id",
+            "category_id"
           ],
           "composite": true,
           "constraint": true,
@@ -576,29 +576,29 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "category_products_category_id_foreign": {
-          "constraintName": "category_products_category_id_foreign",
-          "columnNames": [
-            "category_id"
-          ],
-          "localTableName": "public.category_products",
-          "referencedColumnNames": [
-            "id"
-          ],
-          "referencedTableName": "public.category",
-          "deleteRule": "cascade",
-          "updateRule": "cascade"
-        },
-        "category_products_product_id_foreign": {
-          "constraintName": "category_products_product_id_foreign",
+        "product_categories_product_id_foreign": {
+          "constraintName": "product_categories_product_id_foreign",
           "columnNames": [
             "product_id"
           ],
-          "localTableName": "public.category_products",
+          "localTableName": "public.product_categories",
           "referencedColumnNames": [
             "id"
           ],
           "referencedTableName": "public.product",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        },
+        "product_categories_category_id_foreign": {
+          "constraintName": "product_categories_category_id_foreign",
+          "columnNames": [
+            "category_id"
+          ],
+          "localTableName": "public.product_categories",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.categories",
           "deleteRule": "cascade",
           "updateRule": "cascade"
         }

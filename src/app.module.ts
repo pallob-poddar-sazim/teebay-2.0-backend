@@ -5,7 +5,7 @@ import { UsersModule } from "./modules/users/users.module";
 import { join } from "path";
 import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 import { MikroOrmModule } from "@mikro-orm/nestjs";
-import { CategoryModule } from "./modules/categories/categories.module";
+import { CategoriesModule } from "./modules/categories/categories.module";
 import { ProductModule } from "./modules/products/products.module";
 import { PurchaseModule } from "./modules/purchases/purchases.module";
 import { RentalModule } from "./modules/rentals/rentals.module";
@@ -37,7 +37,7 @@ import config from "./config";
     }),
     MikroOrmModule.forRoot(),
     UsersModule,
-    CategoryModule,
+    CategoriesModule,
     ProductModule,
     PurchaseModule,
     RentalModule,
