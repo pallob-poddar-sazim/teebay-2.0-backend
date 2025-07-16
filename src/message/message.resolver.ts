@@ -17,17 +17,17 @@ export class MessageResolver {
 
   @Mutation()
   async sendMessage(
-    @Args('conversationId') conversationId: string,
-    @Args('participantIds') participantIds: UUID[],
     @Args('senderId') senderId: UUID,
     @Args('text') text: string,
+    @Args('conversationId') conversationId?: string,
+    @Args('participantIds') participantIds?: UUID[],
   ) {
     try {
       const message = await this.messageService.sendMessage(
-        conversationId,
-        participantIds,
         senderId,
         text,
+        conversationId,
+        participantIds,
       );
 
       return handleSuccess('Successfully created message', message);
