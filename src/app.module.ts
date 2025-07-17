@@ -7,7 +7,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin
 import { MikroOrmModule } from "@mikro-orm/nestjs";
 import { CategoriesModule } from "./modules/categories/categories.module";
 import { ProductModule } from "./modules/products/products.module";
-import { PurchaseModule } from "./modules/purchases/purchases.module";
+import { PurchasesModule } from "./modules/purchases/purchases.module";
 import { RentalModule } from "./modules/rentals/rentals.module";
 import { ConversationModule } from "./modules/conversations/conversations.module";
 import { MessageModule } from "./modules/messages/messages.module";
@@ -39,7 +39,7 @@ import config from "./config";
     UsersModule,
     CategoriesModule,
     ProductModule,
-    PurchaseModule,
+    PurchasesModule,
     RentalModule,
     ConversationModule,
     MessageModule,
