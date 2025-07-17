@@ -198,6 +198,26 @@
           "length": 255,
           "mappedType": "string"
         },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
         "title": {
           "name": "title",
           "type": "varchar(255)",
@@ -252,26 +272,6 @@
           ],
           "mappedType": "enum"
         },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamptz",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamptz",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
         "seller_id": {
           "name": "seller_id",
           "type": "varchar(255)",
@@ -283,11 +283,11 @@
           "mappedType": "string"
         }
       },
-      "name": "product",
+      "name": "products",
       "schema": "public",
       "indexes": [
         {
-          "keyName": "product_pkey",
+          "keyName": "products_pkey",
           "columnNames": [
             "id"
           ],
@@ -299,12 +299,12 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "product_seller_id_foreign": {
-          "constraintName": "product_seller_id_foreign",
+        "products_seller_id_foreign": {
+          "constraintName": "products_seller_id_foreign",
           "columnNames": [
             "seller_id"
           ],
-          "localTableName": "public.product",
+          "localTableName": "public.products",
           "referencedColumnNames": [
             "id"
           ],
@@ -412,7 +412,7 @@
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.product",
+          "referencedTableName": "public.products",
           "updateRule": "cascade"
         },
         "rental_borrower_id_foreign": {
@@ -530,7 +530,7 @@
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.product",
+          "referencedTableName": "public.products",
           "updateRule": "cascade"
         }
       },
@@ -559,11 +559,11 @@
           "mappedType": "string"
         }
       },
-      "name": "product_categories",
+      "name": "products_categories",
       "schema": "public",
       "indexes": [
         {
-          "keyName": "product_categories_pkey",
+          "keyName": "products_categories_pkey",
           "columnNames": [
             "product_id",
             "category_id"
@@ -576,25 +576,25 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "product_categories_product_id_foreign": {
-          "constraintName": "product_categories_product_id_foreign",
+        "products_categories_product_id_foreign": {
+          "constraintName": "products_categories_product_id_foreign",
           "columnNames": [
             "product_id"
           ],
-          "localTableName": "public.product_categories",
+          "localTableName": "public.products_categories",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.product",
+          "referencedTableName": "public.products",
           "deleteRule": "cascade",
           "updateRule": "cascade"
         },
-        "product_categories_category_id_foreign": {
-          "constraintName": "product_categories_category_id_foreign",
+        "products_categories_category_id_foreign": {
+          "constraintName": "products_categories_category_id_foreign",
           "columnNames": [
             "category_id"
           ],
-          "localTableName": "public.product_categories",
+          "localTableName": "public.products_categories",
           "referencedColumnNames": [
             "id"
           ],
