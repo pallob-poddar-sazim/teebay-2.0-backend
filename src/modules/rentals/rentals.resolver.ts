@@ -4,7 +4,7 @@ import { handleError, handleSuccess } from "@/utils/graphqlResponse";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 
 @Resolver()
-export class RentalResolver {
+export class RentalsResolver {
   constructor(private readonly rentalService: RentalsService) {}
 
   @Query()

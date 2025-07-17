@@ -4,10 +4,10 @@ import { Rental } from "@/common/entities/rentals.entity";
 import { User } from "@/common/entities/users.entity";
 import { Product } from "@/common/entities/products.entity";
 import { RentalsService } from "./rentals.service";
-import { RentalResolver } from "./rentals.resolver";
+import { RentalsResolver } from "./rentals.resolver";
 
 @Module({
   imports: [MikroOrmModule.forFeature([Rental, User, Product])],
-  providers: [RentalResolver, RentalsService],
+  providers: [RentalsResolver, RentalsService],
 })
 export class RentalModule {}
