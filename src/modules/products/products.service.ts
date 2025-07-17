@@ -66,11 +66,9 @@ export class ProductsService {
 
     await this.em.flush();
 
-    const createdProduct = await this.productsRepository.findOne(product.id, {
-      populate: ["seller", "categories"],
-    });
+    await this.productsRepository.populate(product, ["seller", "categories"]);
 
-    return createdProduct;
+    return product;
   }
 
   async updateOne(productUpdateDto: ProductUpdateDto): Promise<Product> {
