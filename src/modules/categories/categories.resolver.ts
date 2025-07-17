@@ -1,6 +1,6 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { handleSuccess, handleError } from '../../utils/graphqlResponse';
-import { CategoriesService } from './categories.service';
+import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { handleSuccess, handleError } from "../../utils/graphqlResponse";
+import { CategoriesService } from "./categories.service";
 
 @Resolver()
 export class CategoriesResolver {
@@ -11,7 +11,7 @@ export class CategoriesResolver {
     try {
       const categories = await this.categoriesService.getAll();
 
-      return handleSuccess('Successfully fetched categories', categories);
+      return handleSuccess("Successfully fetched categories", categories);
     } catch (error) {
       console.error(error);
       return handleError(error);
@@ -19,11 +19,11 @@ export class CategoriesResolver {
   }
 
   @Mutation()
-  async createCategories(@Args('names') names: string[]) {
+  async createCategories(@Args("names") names: string[]) {
     try {
       const categories = await this.categoriesService.createMany(names);
 
-      return handleSuccess('Successfully created categories', categories);
+      return handleSuccess("Successfully created categories", categories);
     } catch (error) {
       console.error(error);
       return handleError(error);
