@@ -6,13 +6,13 @@ import {
   PrimaryKey,
   Property,
   Unique,
-} from '@mikro-orm/core';
-import { Product } from './products.entity';
-import { CategoriesRepository } from '@/modules/categories/categories.repository';
-import { CustomBaseEntity } from './custom-base.entity';
+} from "@mikro-orm/core";
+import { Product } from "./products.entity";
+import { CategoriesRepository } from "@/modules/categories/categories.repository";
+import { CustomBaseEntity } from "./custom-base.entity";
 
 @Entity({
-  tableName: 'categories',
+  tableName: "categories",
   repository: () => CategoriesRepository,
 })
 export class Category extends CustomBaseEntity {
@@ -20,6 +20,7 @@ export class Category extends CustomBaseEntity {
 
   constructor(name: string) {
     super();
+
     this.name = name;
   }
   @PrimaryKey()
