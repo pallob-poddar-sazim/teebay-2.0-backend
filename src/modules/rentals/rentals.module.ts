@@ -10,4 +10,4 @@ import { RentalsResolver } from "./rentals.resolver";
   imports: [MikroOrmModule.forFeature([Rental, User, Product])],
   providers: [RentalsResolver, RentalsService],
 })
-export class RentalModule {}
+export class RentalsModule {}

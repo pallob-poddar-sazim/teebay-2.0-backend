@@ -8,7 +8,7 @@ import { MikroOrmModule } from "@mikro-orm/nestjs";
 import { CategoriesModule } from "./modules/categories/categories.module";
 import { ProductModule } from "./modules/products/products.module";
 import { PurchasesModule } from "./modules/purchases/purchases.module";
-import { RentalModule } from "./modules/rentals/rentals.module";
+import { RentalsModule } from "./modules/rentals/rentals.module";
 import { ConversationModule } from "./modules/conversations/conversations.module";
 import { MessageModule } from "./modules/messages/messages.module";
 import { FileModule } from "./file/file.module";
@@ -40,7 +40,7 @@ import config from "./config";
     CategoriesModule,
     ProductModule,
     PurchasesModule,
-    RentalModule,
+    RentalsModule,
     ConversationModule,
     MessageModule,
     FileModule,
