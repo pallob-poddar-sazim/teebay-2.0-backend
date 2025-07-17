@@ -326,25 +326,25 @@
           "length": 255,
           "mappedType": "string"
         },
-        "product_id": {
-          "name": "product_id",
-          "type": "varchar(255)",
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 255,
-          "mappedType": "string"
+          "length": 6,
+          "mappedType": "datetime"
         },
-        "borrower_id": {
-          "name": "borrower_id",
-          "type": "varchar(255)",
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamptz",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 255,
-          "mappedType": "string"
+          "length": 6,
+          "mappedType": "datetime"
         },
         "rent_start_date": {
           "name": "rent_start_date",
@@ -366,32 +366,32 @@
           "length": 6,
           "mappedType": "datetime"
         },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamptz",
+        "product_id": {
+          "name": "product_id",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
+          "length": 255,
+          "mappedType": "string"
         },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamptz",
+        "borrower_id": {
+          "name": "borrower_id",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
+          "length": 255,
+          "mappedType": "string"
         }
       },
-      "name": "rental",
+      "name": "rentals",
       "schema": "public",
       "indexes": [
         {
-          "keyName": "rental_pkey",
+          "keyName": "rentals_pkey",
           "columnNames": [
             "id"
           ],
@@ -403,24 +403,24 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "rental_product_id_foreign": {
-          "constraintName": "rental_product_id_foreign",
+        "rentals_product_id_foreign": {
+          "constraintName": "rentals_product_id_foreign",
           "columnNames": [
             "product_id"
           ],
-          "localTableName": "public.rental",
+          "localTableName": "public.rentals",
           "referencedColumnNames": [
             "id"
           ],
           "referencedTableName": "public.products",
           "updateRule": "cascade"
         },
-        "rental_borrower_id_foreign": {
-          "constraintName": "rental_borrower_id_foreign",
+        "rentals_borrower_id_foreign": {
+          "constraintName": "rentals_borrower_id_foreign",
           "columnNames": [
             "borrower_id"
           ],
-          "localTableName": "public.rental",
+          "localTableName": "public.rentals",
           "referencedColumnNames": [
             "id"
           ],
