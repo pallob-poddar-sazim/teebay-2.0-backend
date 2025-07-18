@@ -462,16 +462,6 @@
           "length": 6,
           "mappedType": "datetime"
         },
-        "buyer_id": {
-          "name": "buyer_id",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 255,
-          "mappedType": "string"
-        },
         "product_id": {
           "name": "product_id",
           "type": "varchar(255)",
@@ -481,9 +471,19 @@
           "nullable": false,
           "length": 255,
           "mappedType": "string"
+        },
+        "buyer_id": {
+          "name": "buyer_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
         }
       },
-      "name": "purchase",
+      "name": "purchases",
       "schema": "public",
       "indexes": [
         {
@@ -491,13 +491,13 @@
             "product_id"
           ],
           "composite": false,
-          "keyName": "purchase_product_id_unique",
+          "keyName": "purchases_product_id_unique",
           "constraint": true,
           "primary": false,
           "unique": true
         },
         {
-          "keyName": "purchase_pkey",
+          "keyName": "purchases_pkey",
           "columnNames": [
             "id"
           ],
@@ -509,28 +509,28 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "purchase_buyer_id_foreign": {
-          "constraintName": "purchase_buyer_id_foreign",
-          "columnNames": [
-            "buyer_id"
-          ],
-          "localTableName": "public.purchase",
-          "referencedColumnNames": [
-            "id"
-          ],
-          "referencedTableName": "public.users",
-          "updateRule": "cascade"
-        },
-        "purchase_product_id_foreign": {
-          "constraintName": "purchase_product_id_foreign",
+        "purchases_product_id_foreign": {
+          "constraintName": "purchases_product_id_foreign",
           "columnNames": [
             "product_id"
           ],
-          "localTableName": "public.purchase",
+          "localTableName": "public.purchases",
           "referencedColumnNames": [
             "id"
           ],
           "referencedTableName": "public.products",
+          "updateRule": "cascade"
+        },
+        "purchases_buyer_id_foreign": {
+          "constraintName": "purchases_buyer_id_foreign",
+          "columnNames": [
+            "buyer_id"
+          ],
+          "localTableName": "public.purchases",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.users",
           "updateRule": "cascade"
         }
       },
@@ -617,16 +617,6 @@
           "length": 255,
           "mappedType": "string"
         },
-        "last_message_id": {
-          "name": "last_message_id",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "length": 255,
-          "mappedType": "string"
-        },
         "created_at": {
           "name": "created_at",
           "type": "timestamptz",
@@ -646,9 +636,19 @@
           "nullable": false,
           "length": 6,
           "mappedType": "datetime"
+        },
+        "last_message_id": {
+          "name": "last_message_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
         }
       },
-      "name": "conversation",
+      "name": "conversations",
       "schema": "public",
       "indexes": [
         {
@@ -656,13 +656,13 @@
             "last_message_id"
           ],
           "composite": false,
-          "keyName": "conversation_last_message_id_unique",
+          "keyName": "conversations_last_message_id_unique",
           "constraint": true,
           "primary": false,
           "unique": true
         },
         {
-          "keyName": "conversation_pkey",
+          "keyName": "conversations_pkey",
           "columnNames": [
             "id"
           ],
@@ -674,16 +674,16 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "conversation_last_message_id_foreign": {
-          "constraintName": "conversation_last_message_id_foreign",
+        "conversations_last_message_id_foreign": {
+          "constraintName": "conversations_last_message_id_foreign",
           "columnNames": [
             "last_message_id"
           ],
-          "localTableName": "public.conversation",
+          "localTableName": "public.conversations",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.message",
+          "referencedTableName": "public.messages",
           "deleteRule": "set null",
           "updateRule": "cascade"
         }
@@ -702,36 +702,6 @@
           "length": 255,
           "mappedType": "string"
         },
-        "conversation_id": {
-          "name": "conversation_id",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 255,
-          "mappedType": "string"
-        },
-        "sender_id": {
-          "name": "sender_id",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 255,
-          "mappedType": "string"
-        },
-        "text": {
-          "name": "text",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 255,
-          "mappedType": "string"
-        },
         "created_at": {
           "name": "created_at",
           "type": "timestamptz",
@@ -751,13 +721,43 @@
           "nullable": false,
           "length": 6,
           "mappedType": "datetime"
+        },
+        "text": {
+          "name": "text",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "sender_id": {
+          "name": "sender_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "conversation_id": {
+          "name": "conversation_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
         }
       },
-      "name": "message",
+      "name": "messages",
       "schema": "public",
       "indexes": [
         {
-          "keyName": "message_pkey",
+          "keyName": "messages_pkey",
           "columnNames": [
             "id"
           ],
@@ -769,28 +769,28 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "message_conversation_id_foreign": {
-          "constraintName": "message_conversation_id_foreign",
-          "columnNames": [
-            "conversation_id"
-          ],
-          "localTableName": "public.message",
-          "referencedColumnNames": [
-            "id"
-          ],
-          "referencedTableName": "public.conversation",
-          "updateRule": "cascade"
-        },
-        "message_sender_id_foreign": {
-          "constraintName": "message_sender_id_foreign",
+        "messages_sender_id_foreign": {
+          "constraintName": "messages_sender_id_foreign",
           "columnNames": [
             "sender_id"
           ],
-          "localTableName": "public.message",
+          "localTableName": "public.messages",
           "referencedColumnNames": [
             "id"
           ],
           "referencedTableName": "public.users",
+          "updateRule": "cascade"
+        },
+        "messages_conversation_id_foreign": {
+          "constraintName": "messages_conversation_id_foreign",
+          "columnNames": [
+            "conversation_id"
+          ],
+          "localTableName": "public.messages",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.conversations",
           "updateRule": "cascade"
         }
       },
@@ -819,11 +819,11 @@
           "mappedType": "string"
         }
       },
-      "name": "conversation_participants",
+      "name": "conversations_participants",
       "schema": "public",
       "indexes": [
         {
-          "keyName": "conversation_participants_pkey",
+          "keyName": "conversations_participants_pkey",
           "columnNames": [
             "conversation_id",
             "user_id"
@@ -836,25 +836,25 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "conversation_participants_conversation_id_foreign": {
-          "constraintName": "conversation_participants_conversation_id_foreign",
+        "conversations_participants_conversation_id_foreign": {
+          "constraintName": "conversations_participants_conversation_id_foreign",
           "columnNames": [
             "conversation_id"
           ],
-          "localTableName": "public.conversation_participants",
+          "localTableName": "public.conversations_participants",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.conversation",
+          "referencedTableName": "public.conversations",
           "deleteRule": "cascade",
           "updateRule": "cascade"
         },
-        "conversation_participants_user_id_foreign": {
-          "constraintName": "conversation_participants_user_id_foreign",
+        "conversations_participants_user_id_foreign": {
+          "constraintName": "conversations_participants_user_id_foreign",
           "columnNames": [
             "user_id"
           ],
-          "localTableName": "public.conversation_participants",
+          "localTableName": "public.conversations_participants",
           "referencedColumnNames": [
             "id"
           ],

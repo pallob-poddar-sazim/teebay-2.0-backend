@@ -11,7 +11,7 @@ import { PurchasesModule } from "./modules/purchases/purchases.module";
 import { RentalsModule } from "./modules/rentals/rentals.module";
 import { ConversationsModule } from "./modules/conversations/conversations.module";
 import { MessagesModule } from "./modules/messages/messages.module";
-import { FileModule } from "./file/file.module";
+import { FileUploadsModule } from "./modules/file-uploads/file-uploads.module";
 import { BullModule } from "@nestjs/bullmq";
 import config from "./config";
 
@@ -43,7 +43,7 @@ import config from "./config";
     RentalsModule,
     ConversationsModule,
     MessagesModule,
-    FileModule,
+    FileUploadsModule,
   ],
 })
 export class AppModule {}

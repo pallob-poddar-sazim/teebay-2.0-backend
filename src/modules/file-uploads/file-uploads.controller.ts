@@ -5,14 +5,14 @@ import {
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
-import { S3Service } from './s3.service';
+import { S3Service } from '@/common/aws/s3-service/s3-service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { v4 as uuidv4 } from 'uuid';
 import { QueueService } from './queue.service';
-import config from 'src/config';
+import config from '@/config';
 
 @Controller()
-export class FileController {
+export class FileUploadsController {
   constructor(
     private readonly s3Service: S3Service,
     private readonly queueService: QueueService,

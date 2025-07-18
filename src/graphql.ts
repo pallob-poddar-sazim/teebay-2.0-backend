@@ -27,7 +27,7 @@ export interface CategoryResponse {
 export interface IQuery {
     getAllCategories(): CategoryResponse | Promise<CategoryResponse>;
     getConversationsByUserId(userId: string): ConversationQueryResponse | Promise<ConversationQueryResponse>;
-    getMessages(participantIds: string[]): MessageQueryResponse | Promise<MessageQueryResponse>;
+    getMessages(conversationId?: Nullable<string>, participantIds?: Nullable<string[]>): MessageQueryResponse | Promise<MessageQueryResponse>;
     getAllProducts(): ProductRetrieveResponse | Promise<ProductRetrieveResponse>;
     getProductsBySellerId(sellerId: string): ProductRetrieveResponse | Promise<ProductRetrieveResponse>;
     getPurchasesByUserId(userId: string): PurchaseRetrieveResponse | Promise<PurchaseRetrieveResponse>;

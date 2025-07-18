@@ -4,7 +4,7 @@ import {
   PutObjectCommand,
   GetObjectCommand,
 } from '@aws-sdk/client-s3';
-import config from 'src/config';
+import config from '@/config';
 import { Readable } from 'stream';
 
 @Injectable()
