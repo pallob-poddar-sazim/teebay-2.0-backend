@@ -24,7 +24,7 @@ type MessageMutationResponse {
 }
 
 type Query {
-  getMessages(participantIds: [ID!]!): MessageQueryResponse!
+  getMessages(conversationId: String, participantIds: [ID!]): MessageQueryResponse!
 }
 
 type Mutation {

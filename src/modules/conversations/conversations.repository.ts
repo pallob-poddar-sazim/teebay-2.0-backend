@@ -1,4 +1,5 @@
 import { Conversation } from "@/common/entities/conversations.entity";
+import { Message } from "@/common/entities/messages.entity";
 import { User } from "@/common/entities/users.entity";
 import { CustomSQLBaseRepository } from "@/common/repository/custom-sql-base.repository";
 import { Injectable } from "@nestjs/common";
@@ -18,9 +19,17 @@ export class ConversationsRepository extends CustomSQLBaseRepository<Conversatio
 
   createOne(id: string, participants: User[]) {
     const conversation = new Conversation(id, participants);
-    
+
     this.em.persist(conversation);
-    
+
+    return conversation;
+  }
+
+  updateOne(conversation: Conversation, lastMessage: Message) {
+    conversation.lastMessage = lastMessage;
+
+    this.em.persist(conversation);
+
     return conversation;
   }
 }

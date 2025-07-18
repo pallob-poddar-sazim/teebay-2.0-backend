@@ -10,7 +10,7 @@ import { ProductsModule } from "./modules/products/products.module";
 import { PurchasesModule } from "./modules/purchases/purchases.module";
 import { RentalsModule } from "./modules/rentals/rentals.module";
 import { ConversationsModule } from "./modules/conversations/conversations.module";
-import { MessageModule } from "./modules/messages/messages.module";
+import { MessagesModule } from "./modules/messages/messages.module";
 import { FileModule } from "./file/file.module";
 import { BullModule } from "@nestjs/bullmq";
 import config from "./config";
@@ -42,7 +42,7 @@ import config from "./config";
     PurchasesModule,
     RentalsModule,
     ConversationsModule,
-    MessageModule,
+    MessagesModule,
     FileModule,
   ],
 })
