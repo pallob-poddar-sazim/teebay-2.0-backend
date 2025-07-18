@@ -1,17 +1,17 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
-import { ConversationService } from './conversation.service';
+import { ConversationsService } from './conversations.service';
 import { UUID } from 'crypto';
-import { handleError, handleSuccess } from 'src/utils/graphqlResponse';
+import { handleError, handleSuccess } from '@/utils/graphqlResponse';
 
 @Resolver()
-export class ConversationResolver {
-  constructor(private readonly conversationService: ConversationService) {}
+export class ConversationsResolver {
+  constructor(private readonly conversationsService: ConversationsService) {}
 
   @Query()
   async getConversationsByUserId(@Args('userId') userId: UUID) {
     try {
       const conversations =
-        await this.conversationService.getConversationsByUserId(userId);
+        await this.conversationsService.getAllByUserId(userId);
 
       return handleSuccess(
         'Successfully retrived conversations',
