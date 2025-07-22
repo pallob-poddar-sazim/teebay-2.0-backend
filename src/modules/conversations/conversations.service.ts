@@ -5,7 +5,7 @@ import { EntityManager } from "@mikro-orm/postgresql";
 import { UUID } from "crypto";
 import { User } from "@/common/entities/users.entity";
 import { GraphQLError } from "graphql/error";
-import { generateConversationId } from "@/utils/hashing";
+import { generateConversationId } from "@/utils/crypto-helper";
 import { ConversationsRepository } from "./conversations.repository";
 import { UsersRepository } from "../users/users.repository";
 

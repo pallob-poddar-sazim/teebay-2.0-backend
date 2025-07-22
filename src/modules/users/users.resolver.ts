@@ -1,6 +1,6 @@
 import { Resolver, Mutation, Args } from "@nestjs/graphql";
 import { UsersService } from "./users.service";
-import { handleSuccess, handleError } from "@/utils/graphqlResponse";
+import { handleSuccess, handleError } from "@/utils/graphql-response";
 
 @Resolver()
 export class UsersResolver {

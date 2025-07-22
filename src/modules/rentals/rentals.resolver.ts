@@ -1,6 +1,6 @@
 import { UUID } from "crypto";
 import { RentalsService } from "./rentals.service";
-import { handleError, handleSuccess } from "@/utils/graphqlResponse";
+import { handleError, handleSuccess } from "@/utils/graphql-response";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 
 @Resolver()

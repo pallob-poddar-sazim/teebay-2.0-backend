@@ -1,4 +1,4 @@
-import { handleSuccess, handleError } from "../../utils/graphqlResponse";
+import { handleSuccess, handleError } from "../../utils/graphql-response";
 import { ProductsService } from "./products.service";
 import { UUID } from "crypto";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
