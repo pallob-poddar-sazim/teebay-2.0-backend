@@ -12,6 +12,7 @@ class Config {
   public readonly awsAccessKeyId: string;
   public readonly awsSecretAccessKey: string;
   public readonly awsS3BucketName: string;
+  public readonly awsS3PresignedUrlExpiryInMinutes: number;
   public readonly redisHost: string;
   public readonly dbHost: string;
 
@@ -26,6 +27,8 @@ class Config {
     this.awsRegion = process.env.AWS_REGION || "";
     this.awsS3BucketName = process.env.AWS_S3_BUCKET_NAME || "";
     this.awsEndpoint = process.env.AWS_ENDPOINT || "";
+    this.awsS3PresignedUrlExpiryInMinutes =
+      Number(process.env.AWS_S3_PRESIGNED_URL_EXPIRY_IN_MINUTES) || 5;
     this.awsAccessKeyId = process.env.AWS_ACCESS_KEY_ID || "";
     this.awsSecretAccessKey = process.env.AWS_SECRET_ACCESS_KEY || "";
     this.redisHost = process.env.REDIS_HOST || "localhost";

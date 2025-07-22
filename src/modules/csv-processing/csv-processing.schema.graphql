@@ -1,0 +1,13 @@
+type CSVProcessing {
+  key: String!
+}
+
+type CSVProcessingMutationResponse {
+  success: Boolean!
+  message: String!
+  data: CSVProcessing
+}
+
+type Mutation {
+  processCSV(key: String!): CSVProcessingMutationResponse!
+}

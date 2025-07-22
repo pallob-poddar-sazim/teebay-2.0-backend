@@ -14,6 +14,8 @@ import { MessagesModule } from "./modules/messages/messages.module";
 import { FileUploadsModule } from "./modules/file-uploads/file-uploads.module";
 import { BullModule } from "@nestjs/bullmq";
 import config from "./config";
+import { S3Module } from "./modules/s3/s3.module";
+import { CSVProcessingModule } from "./modules/csv-processing/csv-processing.module";
 
 @Module({
   imports: [
@@ -43,7 +45,9 @@ import config from "./config";
     RentalsModule,
     ConversationsModule,
     MessagesModule,
+    S3Module,
     FileUploadsModule,
+    CSVProcessingModule,
   ],
 })
 export class AppModule {}

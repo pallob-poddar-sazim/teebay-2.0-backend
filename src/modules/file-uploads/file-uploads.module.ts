@@ -1,17 +1,10 @@
 import { Module } from "@nestjs/common";
-import { FileUploadsController } from "./file-uploads.controller";
-import { S3Service } from "@/common/aws/s3-service/s3-service";
-import { QueueService } from "./queue.service";
-import { BullModule } from "@nestjs/bullmq";
+import { FileUploadsService } from "./file-uploads.service";
+import { FileUploadsResolver } from "./file-uploads.resolver";
+import { S3Module } from "../s3/s3.module";
 
 @Module({
-  imports: [
-    BullModule.registerQueue({
-      name: "productQueue",
-    }),
-  ],
-  controllers: [FileUploadsController],
-  providers: [S3Service, QueueService],
-  exports: [S3Service],
+  imports: [S3Module],
+  providers: [FileUploadsResolver, FileUploadsService],
 })
 export class FileUploadsModule {}
