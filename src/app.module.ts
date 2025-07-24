@@ -11,6 +11,8 @@ import { PurchaseModule } from './purchase/purchase.module';
 import { RentalModule } from './rental/rental.module';
 import { ConversationModule } from './conversation/conversation.module';
 import { MessageModule } from './message/message.module';
+import { FileModule } from './file/file.module';
+import { BullModule } from '@nestjs/bullmq';
 
 @Module({
   imports: [
@@ -26,6 +28,12 @@ import { MessageModule } from './message/message.module';
         path: join(process.cwd(), 'src/graphql.ts'),
       },
     }),
+    BullModule.forRoot({
+      connection: {
+        host: 'localhost',
+        port: 6379,
+      },
+    }),
     MikroOrmModule.forRoot(),
     UserModule,
     CategoryModule,
@@ -34,6 +42,7 @@ import { MessageModule } from './message/message.module';
     RentalModule,
     ConversationModule,
     MessageModule,
+    FileModule,
   ],
 })
 export class AppModule {}

@@ -1,0 +1,17 @@
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - DEBUG=1
+      - SERVICES=s3
+      - PERSISTENCE=1
+    volumes:
+      - "./volume:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
