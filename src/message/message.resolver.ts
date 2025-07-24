@@ -15,18 +15,6 @@ export class MessageResolver {
     private pubSub: PubSub,
   ) {}
 
-  @Query()
-  async getMessages(@Args('conversationId') conversationId: string) {
-    try {
-      const messages = await this.messageService.getMessages(conversationId);
-
-      return handleSuccess('Successfully retrieved messages', messages);
-    } catch (error) {
-      console.error(error);
-      return handleError(error);
-    }
-  }
-
   @Mutation()
   async sendMessage(
     @Args('senderId') senderId: UUID,
@@ -43,6 +31,18 @@ export class MessageResolver {
       );
 
       return handleSuccess('Successfully created message', message);
+    } catch (error) {
+      console.error(error);
+      return handleError(error);
+    }
+  }
+
+  @Query()
+  async getMessages(@Args('participantIds') participantIds: UUID[]) {
+    try {
+      const messages = await this.messageService.getMessages(participantIds);
+
+      return handleSuccess('Successfully retrieved messages', messages);
     } catch (error) {
       console.error(error);
       return handleError(error);
