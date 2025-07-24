@@ -25,8 +25,6 @@ export class MessageService {
 
     private readonly conversationService: ConversationService,
 
-    private readonly em: EntityManager,
-
     @Inject('PUB_SUB')
     private pubSub: PubSub,
   ) {}

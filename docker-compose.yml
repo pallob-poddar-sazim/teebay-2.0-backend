@@ -38,7 +38,7 @@ services:
       - .env
     volumes:
       - .:/app
-    command: sh -c "npx mikro-orm migration:up && yarn start:dev"
+    command: sh -c "npx mikro-orm migration:create && npx mikro-orm migration:up && yarn start:dev"
 
 volumes:
   postgres_data:
