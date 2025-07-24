@@ -45,28 +45,36 @@ export class ProductsService {
     return products;
   }
 
-  async createOne(productCreationDto: ProductCreationDto): Promise<Product | null> {
-    const seller = await this.usersRepository.findOne({ id: productCreationDto.sellerId });
+  async createOne(
+    productCreationDto: ProductCreationDto,
+    em?: EntityManager,
+  ): Promise<Product | null> {
+    const entityManager = em || this.em;
+
+    const usersRepository = entityManager.getRepository(User);
+    const productsRepository = entityManager.getRepository(Product);
+
+    const seller = await usersRepository.findOne({ id: productCreationDto.sellerId });
     if (!seller) {
       throw new GraphQLError("User not found", {
         extensions: { code: "NOT_FOUND" },
       });
     }
 
-    const categories = await this.categoriesRepository.find({
-      id: { $in: productCreationDto.categoryIds },
-    });
+    const categories = productCreationDto.categoryIds.map((id) =>
+      entityManager.getReference(Category, id),
+    );
     if (categories.length !== productCreationDto.categoryIds.length) {
       throw new GraphQLError("One or more categories not found", {
         extensions: { code: "NOT_FOUND" },
       });
     }
 
-    const product = this.productsRepository.createOne(productCreationDto, seller, categories);
+    const product = productsRepository.createOne(productCreationDto, seller, categories);
 
-    await this.em.flush();
+    await entityManager.flush();
 
-    await this.productsRepository.populate(product, ["seller", "categories"]);
+    await productsRepository.populate(product, ["seller", "categories"]);
 
     return product;
   }

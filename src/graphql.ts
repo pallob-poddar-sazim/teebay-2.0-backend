@@ -27,7 +27,8 @@ export interface CategoryResponse {
 export interface IQuery {
     getAllCategories(): CategoryResponse | Promise<CategoryResponse>;
     getConversationsByUserId(userId: string): ConversationQueryResponse | Promise<ConversationQueryResponse>;
-    getMessages(participantIds: string[]): MessageQueryResponse | Promise<MessageQueryResponse>;
+    getPresignedUrl(name: string, type: string): FileUploadQueryResponse | Promise<FileUploadQueryResponse>;
+    getMessages(conversationId?: Nullable<string>, participantIds?: Nullable<string[]>): MessageQueryResponse | Promise<MessageQueryResponse>;
     getAllProducts(): ProductRetrieveResponse | Promise<ProductRetrieveResponse>;
     getProductsBySellerId(sellerId: string): ProductRetrieveResponse | Promise<ProductRetrieveResponse>;
     getPurchasesByUserId(userId: string): PurchaseRetrieveResponse | Promise<PurchaseRetrieveResponse>;
@@ -36,7 +37,7 @@ export interface IQuery {
 
 export interface IMutation {
     createCategories(names: string[]): CategoryResponse | Promise<CategoryResponse>;
-    sendMessage(senderId: string, text: string, conversationId?: Nullable<string>, participantIds?: Nullable<string[]>): MessageMutationResponse | Promise<MessageMutationResponse>;
+    processCSV(key: string): CSVProcessingMutationResponse | Promise<CSVProcessingMutationResponse>;
     sendMessage(senderId: string, text: string, conversationId?: Nullable<string>, participantIds?: Nullable<string[]>): MessageMutationResponse | Promise<MessageMutationResponse>;
     createProduct(title: string, categoryIds: string[], description: string, price: number, rent: number, rentOption: RentOption, sellerId: string): ProductMutationResponse | Promise<ProductMutationResponse>;
     updateProduct(id: string, title?: Nullable<string>, categoryIds?: Nullable<string[]>, description?: Nullable<string>, price?: Nullable<number>, rent?: Nullable<number>, rentOption?: Nullable<RentOption>): ProductMutationResponse | Promise<ProductMutationResponse>;
@@ -51,6 +52,26 @@ export interface ConversationQueryResponse {
     success: boolean;
     message: string;
     data?: Nullable<Conversation[]>;
+}
+
+export interface CSVProcessing {
+    key: string;
+}
+
+export interface CSVProcessingMutationResponse {
+    success: boolean;
+    message: string;
+    data?: Nullable<CSVProcessing>;
+}
+
+export interface FileUpload {
+    signedUrl: string;
+}
+
+export interface FileUploadQueryResponse {
+    success: boolean;
+    message: string;
+    data?: Nullable<FileUpload>;
 }
 
 export interface Conversation {

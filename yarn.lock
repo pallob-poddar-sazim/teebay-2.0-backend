@@ -850,6 +850,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aws-sdk/s3-request-presigner@npm:^3.848.0":
+  version: 3.848.0
+  resolution: "@aws-sdk/s3-request-presigner@npm:3.848.0"
+  dependencies:
+    "@aws-sdk/signature-v4-multi-region": "npm:3.846.0"
+    "@aws-sdk/types": "npm:3.840.0"
+    "@aws-sdk/util-format-url": "npm:3.840.0"
+    "@smithy/middleware-endpoint": "npm:^4.1.15"
+    "@smithy/protocol-http": "npm:^5.1.2"
+    "@smithy/smithy-client": "npm:^4.4.7"
+    "@smithy/types": "npm:^4.3.1"
+    tslib: "npm:^2.6.2"
+  checksum: 10c0/c04be801826a8273caa0050805ae1cdc44ba214909c071c81944a83d0f335ad78580dfcde72ac7167098a6d63f928aa7f6e094a4ca262a9b84f78a07d5cd6a5f
+  languageName: node
+  linkType: hard
+
 "@aws-sdk/signature-v4-multi-region@npm:3.846.0":
   version: 3.846.0
   resolution: "@aws-sdk/signature-v4-multi-region@npm:3.846.0"
@@ -908,6 +924,18 @@ __metadata:
     "@smithy/util-endpoints": "npm:^3.0.6"
     tslib: "npm:^2.6.2"
   checksum: 10c0/ad08353ec6b5667b3f026ca49ceded7c8119fc40db9050aa645ddbf45c6d5e44037a9a2a7a76667afb863ffa3d55c514712e578c972841ac3a5249b8db45b084
+  languageName: node
+  linkType: hard
+
+"@aws-sdk/util-format-url@npm:3.840.0":
+  version: 3.840.0
+  resolution: "@aws-sdk/util-format-url@npm:3.840.0"
+  dependencies:
+    "@aws-sdk/types": "npm:3.840.0"
+    "@smithy/querystring-builder": "npm:^4.0.4"
+    "@smithy/types": "npm:^4.3.1"
+    tslib: "npm:^2.6.2"
+  checksum: 10c0/9f1d55e00bc10523d786e9a7c4b387ceb38170a870a1c5c8772bd3cd7d0ab1f352ca1c49a52cbf751acee65091ae9e58f079e6ee94bbe104b8989bff26f40a63
   languageName: node
   linkType: hard
 
@@ -2595,6 +2623,20 @@ __metadata:
     class-validator:
       optional: true
   checksum: 10c0/1c6a436e7496a21f4a161e815d4a47864ae14cc1a521fbc7de118048c337e2c4abe4ab64258d8b9fc6b178f64b37d526a70acf5f6b7614ea0e8cdc9710679fca
+  languageName: node
+  linkType: hard
+
+"@nestjs/config@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@nestjs/config@npm:4.0.2"
+  dependencies:
+    dotenv: "npm:16.4.7"
+    dotenv-expand: "npm:12.0.1"
+    lodash: "npm:4.17.21"
+  peerDependencies:
+    "@nestjs/common": ^10.0.0 || ^11.0.0
+    rxjs: ^7.1.0
+  checksum: 10c0/549bc8d784f68742c8020954be250639cd8d37a0dd233d01ebe511f67268e5fd109ffb1ae546ca9792a8484ef4cbb79374ae7e2a9587f59b13db1e9a16d443d6
   languageName: node
   linkType: hard
 
@@ -6014,6 +6056,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv-expand@npm:12.0.1":
+  version: 12.0.1
+  resolution: "dotenv-expand@npm:12.0.1"
+  dependencies:
+    dotenv: "npm:^16.4.5"
+  checksum: 10c0/51996bfa670073d7a441b8fbed26ac991026fba2c05e9a937a898ce7d2a2e7166f7b6ec4eb8879e576defb5d1ad399ed1300db8f803d6977577fea55b4d82dac
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:16.4.7":
+  version: 16.4.7
+  resolution: "dotenv@npm:16.4.7"
+  checksum: 10c0/be9f597e36a8daf834452daa1f4cc30e5375a5968f98f46d89b16b983c567398a330580c88395069a77473943c06b877d1ca25b4afafcdd6d4adb549e8293462
+  languageName: node
+  linkType: hard
+
 "dotenv@npm:16.5.0":
   version: 16.5.0
   resolution: "dotenv@npm:16.5.0"
@@ -6021,7 +6079,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.5.0":
+"dotenv@npm:^16.4.5, dotenv@npm:^16.5.0":
   version: 16.6.1
   resolution: "dotenv@npm:16.6.1"
   checksum: 10c0/15ce56608326ea0d1d9414a5c8ee6dcf0fffc79d2c16422b4ac2268e7e2d76ff5a572d37ffe747c377de12005f14b3cc22361e79fc7f1061cce81f77d2c973dc
@@ -10781,6 +10839,7 @@ __metadata:
   dependencies:
     "@apollo/server": "npm:^4.12.2"
     "@aws-sdk/client-s3": "npm:^3.844.0"
+    "@aws-sdk/s3-request-presigner": "npm:^3.848.0"
     "@eslint/eslintrc": "npm:^3.2.0"
     "@eslint/js": "npm:^9.18.0"
     "@mikro-orm/cli": "npm:^6.4.16"
@@ -10792,6 +10851,7 @@ __metadata:
     "@nestjs/bullmq": "npm:^11.0.2"
     "@nestjs/cli": "npm:^11.0.0"
     "@nestjs/common": "npm:^11.0.1"
+    "@nestjs/config": "npm:^4.0.2"
     "@nestjs/core": "npm:^11.0.1"
     "@nestjs/graphql": "npm:^13.1.0"
     "@nestjs/platform-express": "npm:^11.0.1"

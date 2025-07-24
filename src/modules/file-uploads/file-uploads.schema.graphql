@@ -1,0 +1,13 @@
+type FileUpload {
+  signedUrl: String!
+}
+
+type FileUploadQueryResponse {
+  success: Boolean!
+  message: String!
+  data: FileUpload
+}
+
+type Query {
+  getPresignedUrl(name: String!, type: String!): FileUploadQueryResponse!
+}
