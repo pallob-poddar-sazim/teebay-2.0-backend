@@ -54,6 +54,12 @@ export class RentalsService {
       });
     }
 
+    if (product.seller.id === borrower.id) {
+      throw new GraphQLError("You cannot rent your own product", {
+        extensions: { code: "FORBIDDEN" },
+      });
+    }
+
     const existingRental = await this.rentalsRepository.findOne({
       id: rentalDto.productId,
     });
