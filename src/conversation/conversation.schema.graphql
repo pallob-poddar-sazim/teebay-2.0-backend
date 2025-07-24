@@ -1,0 +1,9 @@
+type ConversationQueryResponse {
+    success: Boolean!
+    message: String!
+    data: [Conversation!]
+}
+
+type Query {
+    getConversationsByUserId(userId: ID!): ConversationQueryResponse!
+}

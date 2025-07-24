@@ -464,6 +464,11 @@
         },
         "product_id": {
           "name": "product_id",
+<<<<<<< HEAD
+=======
+        "product_id": {
+          "name": "product_id",
+>>>>>>> main
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
@@ -472,6 +477,11 @@
           "length": 255,
           "mappedType": "string"
         },
+<<<<<<< HEAD
+=======
+        "buyer_id": {
+          "name": "buyer_id",
+>>>>>>> main
         "buyer_id": {
           "name": "buyer_id",
           "type": "varchar(255)",
@@ -484,6 +494,10 @@
         }
       },
       "name": "purchases",
+<<<<<<< HEAD
+=======
+      "name": "purchases",
+>>>>>>> main
       "schema": "public",
       "indexes": [
         {
@@ -492,12 +506,20 @@
           ],
           "composite": false,
           "keyName": "purchases_product_id_unique",
+<<<<<<< HEAD
+=======
+          "keyName": "purchases_product_id_unique",
+>>>>>>> main
           "constraint": true,
           "primary": false,
           "unique": true
         },
         {
           "keyName": "purchases_pkey",
+<<<<<<< HEAD
+=======
+          "keyName": "purchases_pkey",
+>>>>>>> main
           "columnNames": [
             "id"
           ],
@@ -511,26 +533,55 @@
       "foreignKeys": {
         "purchases_product_id_foreign": {
           "constraintName": "purchases_product_id_foreign",
+<<<<<<< HEAD
+=======
+        "purchases_product_id_foreign": {
+          "constraintName": "purchases_product_id_foreign",
+>>>>>>> main
           "columnNames": [
+            "product_id"
             "product_id"
           ],
           "localTableName": "public.purchases",
+<<<<<<< HEAD
+=======
+          "localTableName": "public.purchases",
+>>>>>>> main
           "referencedColumnNames": [
             "id"
           ],
           "referencedTableName": "public.products",
+<<<<<<< HEAD
+=======
+          "referencedTableName": "public.products",
+>>>>>>> main
           "updateRule": "cascade"
         },
         "purchases_buyer_id_foreign": {
           "constraintName": "purchases_buyer_id_foreign",
+<<<<<<< HEAD
           "columnNames": [
             "buyer_id"
           ],
           "localTableName": "public.purchases",
+=======
+        "purchases_buyer_id_foreign": {
+          "constraintName": "purchases_buyer_id_foreign",
+          "columnNames": [
+            "buyer_id"
+            "buyer_id"
+          ],
+          "localTableName": "public.purchases",
+          "localTableName": "public.purchases",
+>>>>>>> main
           "referencedColumnNames": [
             "id"
           ],
           "referencedTableName": "public.users",
+<<<<<<< HEAD
+=======
+          "referencedTableName": "public.users",
+>>>>>>> main
           "updateRule": "cascade"
         }
       },
@@ -744,6 +795,8 @@
         },
         "conversation_id": {
           "name": "conversation_id",
+<<<<<<< HEAD
+=======
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
@@ -754,10 +807,51 @@
         }
       },
       "name": "messages",
+        },
+        "text": {
+          "name": "text",
+>>>>>>> main
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+<<<<<<< HEAD
+=======
+        },
+        "sender_id": {
+          "name": "sender_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "conversation_id": {
+          "name": "conversation_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+>>>>>>> main
+        }
+      },
+      "name": "messages",
       "schema": "public",
       "indexes": [
         {
           "keyName": "messages_pkey",
+<<<<<<< HEAD
+=======
+          "keyName": "messages_pkey",
+>>>>>>> main
           "columnNames": [
             "id"
           ],
@@ -771,26 +865,55 @@
       "foreignKeys": {
         "messages_sender_id_foreign": {
           "constraintName": "messages_sender_id_foreign",
+<<<<<<< HEAD
+=======
+        "messages_sender_id_foreign": {
+          "constraintName": "messages_sender_id_foreign",
+>>>>>>> main
           "columnNames": [
+            "sender_id"
             "sender_id"
           ],
           "localTableName": "public.messages",
+<<<<<<< HEAD
+=======
+          "localTableName": "public.messages",
+>>>>>>> main
           "referencedColumnNames": [
             "id"
           ],
           "referencedTableName": "public.users",
+<<<<<<< HEAD
+=======
+          "referencedTableName": "public.users",
+>>>>>>> main
           "updateRule": "cascade"
         },
         "messages_conversation_id_foreign": {
           "constraintName": "messages_conversation_id_foreign",
+<<<<<<< HEAD
           "columnNames": [
             "conversation_id"
           ],
           "localTableName": "public.messages",
+=======
+        "messages_conversation_id_foreign": {
+          "constraintName": "messages_conversation_id_foreign",
+          "columnNames": [
+            "conversation_id"
+            "conversation_id"
+          ],
+          "localTableName": "public.messages",
+          "localTableName": "public.messages",
+>>>>>>> main
           "referencedColumnNames": [
             "id"
           ],
           "referencedTableName": "public.conversations",
+<<<<<<< HEAD
+=======
+          "referencedTableName": "public.conversations",
+>>>>>>> main
           "updateRule": "cascade"
         }
       },
@@ -820,10 +943,18 @@
         }
       },
       "name": "conversations_participants",
+<<<<<<< HEAD
+=======
+      "name": "conversations_participants",
+>>>>>>> main
       "schema": "public",
       "indexes": [
         {
           "keyName": "conversations_participants_pkey",
+<<<<<<< HEAD
+=======
+          "keyName": "conversations_participants_pkey",
+>>>>>>> main
           "columnNames": [
             "conversation_id",
             "user_id"
@@ -838,23 +969,45 @@
       "foreignKeys": {
         "conversations_participants_conversation_id_foreign": {
           "constraintName": "conversations_participants_conversation_id_foreign",
+<<<<<<< HEAD
+=======
+        "conversations_participants_conversation_id_foreign": {
+          "constraintName": "conversations_participants_conversation_id_foreign",
+>>>>>>> main
           "columnNames": [
             "conversation_id"
           ],
           "localTableName": "public.conversations_participants",
+<<<<<<< HEAD
+=======
+          "localTableName": "public.conversations_participants",
+>>>>>>> main
           "referencedColumnNames": [
             "id"
           ],
           "referencedTableName": "public.conversations",
+<<<<<<< HEAD
+=======
+          "referencedTableName": "public.conversations",
+>>>>>>> main
           "deleteRule": "cascade",
           "updateRule": "cascade"
         },
         "conversations_participants_user_id_foreign": {
           "constraintName": "conversations_participants_user_id_foreign",
+<<<<<<< HEAD
+=======
+        "conversations_participants_user_id_foreign": {
+          "constraintName": "conversations_participants_user_id_foreign",
+>>>>>>> main
           "columnNames": [
             "user_id"
           ],
           "localTableName": "public.conversations_participants",
+<<<<<<< HEAD
+=======
+          "localTableName": "public.conversations_participants",
+>>>>>>> main
           "referencedColumnNames": [
             "id"
           ],
