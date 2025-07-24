@@ -6,9 +6,9 @@ import { join } from "path";
 import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 import { MikroOrmModule } from "@mikro-orm/nestjs";
 import { CategoriesModule } from "./modules/categories/categories.module";
-import { ProductsModule } from "./modules/products/products.module";
+import { ProductModule } from "./modules/products/products.module";
 import { PurchaseModule } from "./modules/purchases/purchases.module";
-import { RentalModule } from "./modules/rentals/rentals.module";
+import { RentalsModule } from "./modules/rentals/rentals.module";
 import { ConversationModule } from "./modules/conversations/conversations.module";
 import { MessageModule } from "./modules/messages/messages.module";
 import { FileModule } from "./file/file.module";
@@ -40,7 +40,7 @@ import config from "./config";
     CategoriesModule,
     ProductsModule,
     PurchaseModule,
-    RentalModule,
+    RentalsModule,
     ConversationModule,
     MessageModule,
     FileModule,
