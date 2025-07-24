@@ -1,6 +1,6 @@
 import { Args, Mutation, Resolver } from "@nestjs/graphql";
 import { CSVProcessingService } from "./csv-processing.service";
-import { handleError, handleSuccess } from "@/utils/graphqlResponse";
+import { handleError, handleSuccess } from "@/utils/graphql-response";
 
 @Resolver()
 export class CSVProcessingResolver {

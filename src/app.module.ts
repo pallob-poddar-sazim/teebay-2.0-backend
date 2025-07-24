@@ -13,12 +13,15 @@ import { ConversationsModule } from "./modules/conversations/conversations.modul
 import { MessagesModule } from "./modules/messages/messages.module";
 import { FileUploadsModule } from "./modules/file-uploads/file-uploads.module";
 import { BullModule } from "@nestjs/bullmq";
-import config from "./config";
 import { S3Module } from "./modules/s3/s3.module";
 import { CSVProcessingModule } from "./modules/csv-processing/csv-processing.module";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       subscriptions: {
@@ -31,11 +34,15 @@ import { CSVProcessingModule } from "./modules/csv-processing/csv-processing.mod
         path: join(process.cwd(), "src/graphql.ts"),
       },
     }),
-    BullModule.forRoot({
-      connection: {
-        host: config.redisHost,
-        port: 6379,
-      },
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        connection: {
+          host: configService.get("REDIS_HOST"),
+          port: 6379,
+        },
+      }),
+      inject: [ConfigService],
     }),
     MikroOrmModule.forRoot(),
     UsersModule,

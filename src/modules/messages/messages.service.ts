@@ -8,7 +8,7 @@ import { ConversationsService } from "../conversations/conversations.service";
 import { GraphQLError } from "graphql/error";
 import { PubSub } from "graphql-subscriptions";
 import { Inject } from "@nestjs/common";
-import { generateConversationId } from "@/utils/hashing";
+import { generateConversationId } from "@/utils/crypto-helper";
 import { MessagesRepository } from "./messages.repository";
 import { UsersRepository } from "../users/users.repository";
 import { ConversationsRepository } from "../conversations/conversations.repository";

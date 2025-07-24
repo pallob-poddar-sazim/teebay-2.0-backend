@@ -1,6 +1,6 @@
 import { Args, Query, Resolver } from "@nestjs/graphql";
 import { FileUploadsService } from "./file-uploads.service";
-import { handleError, handleSuccess } from "@/utils/graphqlResponse";
+import { handleError, handleSuccess } from "@/utils/graphql-response";
 
 @Resolver()
 export class FileUploadsResolver {

@@ -1,10 +1,10 @@
 import { Args, Mutation, Query, Resolver, Subscription } from "@nestjs/graphql";
 import { MessagesService } from "./messages.service";
 import { UUID } from "crypto";
-import { handleError, handleSuccess } from "@/utils/graphqlResponse";
+import { handleError, handleSuccess } from "@/utils/graphql-response";
 import { PubSub } from "graphql-subscriptions";
 import { Inject } from "@nestjs/common";
-import { generateConversationId } from "@/utils/hashing";
+import { generateConversationId } from "@/utils/crypto-helper";
 
 @Resolver()
 export class MessagesResolver {

@@ -1,5 +1,5 @@
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
-import { handleSuccess, handleError } from "../../utils/graphqlResponse";
+import { handleSuccess, handleError } from "../../utils/graphql-response";
 import { CategoriesService } from "./categories.service";
 
 @Resolver()
