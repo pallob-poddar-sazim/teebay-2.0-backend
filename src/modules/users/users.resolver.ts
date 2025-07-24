@@ -3,7 +3,7 @@ import { UsersService } from "./users.service";
 import { handleSuccess, handleError } from "@/utils/graphqlResponse";
 
 @Resolver()
-export class UserResolver {
+export class UsersResolver {
   constructor(private readonly userService: UsersService) {}
 
   @Mutation()

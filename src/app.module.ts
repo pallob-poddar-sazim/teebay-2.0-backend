@@ -38,7 +38,7 @@ import config from "./config";
     MikroOrmModule.forRoot(),
     UsersModule,
     CategoriesModule,
-    ProductModule,
+    ProductsModule,
     PurchaseModule,
     RentalsModule,
     ConversationModule,

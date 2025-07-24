@@ -13,4 +13,4 @@ import { FileModule } from "@/file/file.module";
   providers: [ProductsResolver, ProductsService, ProductConsumer],
   exports: [MikroOrmModule.forFeature([Product])],
 })
-export class ProductModule {}
+export class ProductsModule {}
