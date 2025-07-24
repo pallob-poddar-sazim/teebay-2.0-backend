@@ -6,15 +6,33 @@ import {
   OneToMany,
   Collection,
   ManyToMany,
-} from '@mikro-orm/core';
-import { Product } from '../product/product.entity';
-import { Purchase } from '../purchase/purchase.entity';
-import { Rental } from '../rental/rental.entity';
-import { Conversation } from '../conversation/conversation.entity';
-import { Message } from '../message/message.entity';
+  EntityRepositoryType,
+} from "@mikro-orm/core";
+import { Product } from "./products.entity";
+import { Purchase } from "./purchases.entity";
+import { Rental } from "./rentals.entity";
+import { Conversation } from "./conversations.entity";
+import { Message } from "./messages.entity";
+import { UsersRepository } from "@/modules/users/users.repository";
+import { CustomBaseEntity } from "./custom-base.entity";
 
-@Entity()
-export class User {
+@Entity({
+  tableName: "users",
+  repository: () => UsersRepository,
+})
+export class User extends CustomBaseEntity {
+  [EntityRepositoryType]?: UsersRepository;
+
+  constructor(name: string, email: string, phone: string, address: string, password: string) {
+    super();
+    
+    this.name = name;
+    this.email = email;
+    this.phone = phone;
+    this.address = address;
+    this.password = password;
+  }
+
   @PrimaryKey()
   id: string = crypto.randomUUID();
 
@@ -33,12 +51,6 @@ export class User {
 
   @Property()
   password!: string;
-
-  @Property({ onCreate: () => new Date() })
-  createdAt?: Date = new Date();
-
-  @Property({ onUpdate: () => new Date() })
-  updatedAt?: Date = new Date();
 
   @OneToMany(() => Product, (product) => product.seller)
   products = new Collection<Product>(this);

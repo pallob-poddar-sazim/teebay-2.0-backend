@@ -106,37 +106,6 @@
           "nullable": false,
           "length": 6,
           "mappedType": "datetime"
-        }
-      },
-      "name": "conversation",
-      "schema": "public",
-      "indexes": [
-        {
-          "keyName": "conversation_pkey",
-          "columnNames": [
-            "id"
-          ],
-          "composite": false,
-          "constraint": true,
-          "primary": true,
-          "unique": true
-        }
-      ],
-      "checks": [],
-      "foreignKeys": {},
-      "nativeEnums": {}
-    },
-    {
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 255,
-          "mappedType": "string"
         },
         "name": {
           "name": "name",
@@ -187,29 +156,9 @@
           "nullable": false,
           "length": 255,
           "mappedType": "string"
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamptz",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamptz",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
         }
       },
-      "name": "user",
+      "name": "users",
       "schema": "public",
       "indexes": [
         {
@@ -217,13 +166,13 @@
             "email"
           ],
           "composite": false,
-          "keyName": "user_email_unique",
+          "keyName": "users_email_unique",
           "constraint": true,
           "primary": false,
           "unique": true
         },
         {
-          "keyName": "user_pkey",
+          "keyName": "users_pkey",
           "columnNames": [
             "id"
           ],
@@ -359,7 +308,7 @@
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.user",
+          "referencedTableName": "public.users",
           "updateRule": "cascade"
         }
       },
@@ -475,7 +424,7 @@
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.user",
+          "referencedTableName": "public.users",
           "updateRule": "cascade"
         }
       },
@@ -569,7 +518,7 @@
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.user",
+          "referencedTableName": "public.users",
           "updateRule": "cascade"
         },
         "purchase_product_id_foreign": {
@@ -841,7 +790,7 @@
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.user",
+          "referencedTableName": "public.users",
           "updateRule": "cascade"
         }
       },
@@ -909,7 +858,7 @@
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.user",
+          "referencedTableName": "public.users",
           "deleteRule": "cascade",
           "updateRule": "cascade"
         }

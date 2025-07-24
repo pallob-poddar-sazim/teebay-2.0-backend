@@ -1,4 +1,4 @@
-import { GraphQLError } from 'graphql';
+import { GraphQLError } from 'graphql/error';
 
 const handleSuccess = (message: string, data?: object | null) => {
   return {
