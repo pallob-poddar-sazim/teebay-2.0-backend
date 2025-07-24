@@ -15,34 +15,34 @@ export class MessageResolver {
     private pubSub: PubSub,
   ) {}
 
-  @Mutation()
-  async sendMessage(
-    @Args('conversationId') conversationId: string,
-    @Args('participantIds') participantIds: UUID[],
-    @Args('senderId') senderId: UUID,
-    @Args('text') text: string,
-  ) {
+  @Query()
+  async getMessages(@Args('conversationId') conversationId: string) {
     try {
-      const message = await this.messageService.sendMessage(
-        conversationId,
-        participantIds,
-        senderId,
-        text,
-      );
+      const messages = await this.messageService.getMessages(conversationId);
 
-      return handleSuccess('Successfully created message', message);
+      return handleSuccess('Successfully retrieved messages', messages);
     } catch (error) {
       console.error(error);
       return handleError(error);
     }
   }
 
-  @Query()
-  async getMessages(@Args('participantIds') participantIds: UUID[]) {
+  @Mutation()
+  async sendMessage(
+    @Args('senderId') senderId: UUID,
+    @Args('text') text: string,
+    @Args('conversationId') conversationId?: string,
+    @Args('participantIds') participantIds?: UUID[],
+  ) {
     try {
-      const messages = await this.messageService.getMessages(participantIds);
+      const message = await this.messageService.sendMessage(
+        senderId,
+        text,
+        conversationId,
+        participantIds,
+      );
 
-      return handleSuccess('Successfully retrieved messages', messages);
+      return handleSuccess('Successfully created message', message);
     } catch (error) {
       console.error(error);
       return handleError(error);

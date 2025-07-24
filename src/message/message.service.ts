@@ -25,15 +25,17 @@ export class MessageService {
 
     private readonly conversationService: ConversationService,
 
+    private readonly em: EntityManager,
+
     @Inject('PUB_SUB')
     private pubSub: PubSub,
   ) {}
 
   async sendMessage(
-    conversationId: string,
-    participantIds: UUID[],
     senderId: UUID,
     text: string,
+    conversationId?: string,
+    participantIds?: UUID[],
   ): Promise<Message> {
     const sender = await this.userRepository.findOne({ id: senderId });
     if (!sender) {

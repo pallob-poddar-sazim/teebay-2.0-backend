@@ -40,8 +40,12 @@ export class ConversationService {
         participants,
       });
 
-      const em = this.conversationRepository.getEntityManager();
-      await em.persistAndFlush(conversation);
+    if (!conversation) {
+      conversation = this.conversationRepository.create({
+        id: conversationId,
+        participants,
+      });
+      await this.em.persistAndFlush(conversation);
     }
 
     return conversation;
