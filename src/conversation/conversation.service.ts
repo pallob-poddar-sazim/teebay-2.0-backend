@@ -1,7 +1,7 @@
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { Injectable } from '@nestjs/common';
 import { Conversation } from './conversation.entity';
-import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
+import { EntityRepository } from '@mikro-orm/postgresql';
 import { UUID } from 'crypto';
 import { User } from 'src/user/user.entity';
 import { GraphQLError } from 'graphql';
@@ -15,8 +15,6 @@ export class ConversationService {
 
     @InjectRepository(User)
     private readonly userRepository: EntityRepository<User>,
-
-    private readonly em: EntityManager,
   ) {}
 
   async create(participantIds: UUID[]): Promise<Conversation> {
@@ -32,13 +30,39 @@ export class ConversationService {
 
     const conversationId = generateConversationId(participantIds);
 
-    const conversation = this.conversationRepository.create({
+    let conversation = await this.conversationRepository.findOne({
       id: conversationId,
-      participants,
     });
 
-    await this.em.persistAndFlush(conversation);
+    if (!conversation) {
+      conversation = this.conversationRepository.create({
+        id: conversationId,
+        participants,
+      });
+
+      const em = this.conversationRepository.getEntityManager();
+      await em.persistAndFlush(conversation);
+    }
 
     return conversation;
+  }
+
+  async getConversationsByUserId(userId: UUID): Promise<Conversation[]> {
+    const user = await this.userRepository.findOne(userId);
+    if (!user) {
+      throw new GraphQLError('User not found', {
+        extensions: { code: 'NOT_FOUND' },
+      });
+    }
+
+    const conversations = await this.conversationRepository.find(
+      { participants: userId },
+      {
+        populate: ['participants', 'lastMessage'],
+        orderBy: { updatedAt: 'DESC' },
+      },
+    );
+
+    return conversations;
   }
 }

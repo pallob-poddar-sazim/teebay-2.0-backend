@@ -3,6 +3,7 @@ import {
   Entity,
   ManyToMany,
   OneToMany,
+  OneToOne,
   PrimaryKey,
   Property,
 } from '@mikro-orm/core';
@@ -19,6 +20,9 @@ export class Conversation {
 
   @OneToMany(() => Message, (message) => message.conversation)
   messages = new Collection<Message>(this);
+
+  @OneToOne(() => Message, { nullable: true })
+  lastMessage?: Message;
 
   @Property({ onCreate: () => new Date() })
   createdAt?: Date = new Date();

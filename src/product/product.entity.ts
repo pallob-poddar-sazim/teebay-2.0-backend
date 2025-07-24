@@ -27,7 +27,7 @@ export class Product {
   @Property()
   title!: string;
 
-  @Property()
+  @Property({ columnType: 'text'})
   description!: string;
 
   @Property({ type: 'decimal' })

@@ -1,7 +1,7 @@
 type Conversation {
   id: ID!
-  conversationKey: String!
   participants: [User!]
+  lastMessage: Message!
 }
 
 type Message {
@@ -11,10 +11,20 @@ type Message {
   text: String!
 }
 
+type MessageQueryResponse {
+  success: Boolean!
+  message: String!
+  data: [Message]
+}
+
 type MessageMutationResponse {
   success: Boolean!
   message: String!
   data: Message
+}
+
+type Query {
+  getMessages(participantIds: [ID!]!): MessageQueryResponse!
 }
 
 type Mutation {
@@ -24,4 +34,12 @@ type Mutation {
     conversationId: String
     participantIds: [ID!]
   ): MessageMutationResponse!
+}
+
+type Subscription {
+  messageSent(conversationId: String, participantIds: [ID!]): Message
+}
+
+type Subscription {
+  messageSentToUser(userId: ID!): Message
 }
