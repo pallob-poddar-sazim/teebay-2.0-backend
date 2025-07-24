@@ -16,6 +16,7 @@ import { BullModule } from "@nestjs/bullmq";
 import { S3Module } from "./modules/s3/s3.module";
 import { CSVProcessingModule } from "./modules/csv-processing/csv-processing.module";
 import { ConfigModule, ConfigService } from "@nestjs/config";
+import mikroOrmConfig from "../mikro-orm.config";
 
 @Module({
   imports: [
@@ -44,7 +45,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
       }),
       inject: [ConfigService],
     }),
-    MikroOrmModule.forRoot(),
+    MikroOrmModule.forRoot(mikroOrmConfig),
     UsersModule,
     CategoriesModule,
     ProductsModule,
